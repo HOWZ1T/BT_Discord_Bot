@@ -1,6 +1,6 @@
 ﻿module.exports.message = function (message, params, prefix) {
     let query = require('../query').query;
-    query('SELECT * FROM citizens WHERE citizens_id = ' + message.author.id).then(res => {
+    query('SELECT * FROM citizens WHERE citizen_id = ' + message.author.id).then(res => {
         if (res.length > 0)
         {
             message.channel.send("You are already registered in the galactic database! :smiley:");

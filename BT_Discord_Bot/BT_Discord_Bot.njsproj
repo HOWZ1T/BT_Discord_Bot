@@ -38,6 +38,9 @@
     <Compile Include="commands\setup.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="commands\slots.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="emojis.js">
       <SubType>Code</SubType>
     </Compile>

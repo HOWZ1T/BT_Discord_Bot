@@ -1,6 +1,7 @@
 ﻿var commands = {
     'setup': require('./commands/setup'),
-    'register': require('./commands/register')
+    'register': require('./commands/register'),
+    'slots': require('./commands/slots')
 };
 
 var prefix = '??';

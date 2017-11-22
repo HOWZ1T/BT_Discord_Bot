@@ -126,4 +126,4 @@ bot.on('ready', function () {
     bot.user.setPresence({ status: 'online', game: { name: 'Use ??help' } });
 });
 
-bot.login('MzgyMDgzMzU3MjIxMTkxNjgx.DPbs7w.t5lcKV5U6xx22Ul3VGvS2Zz5JBo');
+bot.login('<token>');
