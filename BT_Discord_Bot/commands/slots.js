@@ -45,15 +45,15 @@
             line3 += map[(nums[0] + 4) % 6] + map[(nums[1] + 5) % 6] + map[(nums[2] + 6) % 6] + emojis.empty;
 
             let won = 0;
-            if (nums[0] === nums[1] === nums[2])
+            if (nums[0] === nums[1] && nums[1] === nums[2])
             {
-                won = 1000;
-                newbal += 1000;
+                won = 1000*bet;
+                newbal += 1000*bet;
             }
             else if (nums[0] === nums[1] || nums[1] === nums[2])
             {
-                won = 500;
-                newbal += 500;
+                won = 500*bet;
+                newbal += 500*bet;
             }
             else
             {
