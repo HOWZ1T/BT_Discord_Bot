@@ -5,5 +5,12 @@
   "main": "app.js",
   "author": {
     "name": "Dylan"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "discord.js": "^11.2.1",
+    "gamepedia-api": "^0.1.1",
+    "mysql": "^2.15.0",
+    "request": "^2.83.0"
   }
 }
