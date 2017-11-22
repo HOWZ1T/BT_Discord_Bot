@@ -32,6 +32,9 @@
     <Compile Include="commandManager.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="commands\register.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="commands\setup.js">
       <SubType>Code</SubType>
     </Compile>

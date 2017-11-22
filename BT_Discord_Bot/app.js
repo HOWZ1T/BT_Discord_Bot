@@ -45,7 +45,7 @@ bot.on('guildMemberAdd', member => {
 
             let date = new Date();
             let embed = new Discord.RichEmbed();
-            let profilePic = member.user.avatarURL || 'https://i.imgur.com/s6UfSS5.jpg?1';
+            let profilePic = member.user.avatarURL || bot.user.defaultAvatarURL;
             embed.setAuthor(member.user.username, profilePic);
             embed.setTitle('Welcome ' + member.user.username + ' to the guild!');
             embed.setDescription('Joined: ' + date.toUTCString());
@@ -76,7 +76,7 @@ bot.on('guildMemberRemove', member => {
 
             let date = new Date();
             let embed = new Discord.RichEmbed();
-            let profilePic = member.user.avatarURL || 'https://i.imgur.com/s6UfSS5.jpg?1';
+            let profilePic = member.user.avatarURL || bot.user.defaultAvatarURL;
             embed.setAuthor(member.user.username, profilePic);
             embed.setTitle(member.user.username + ' has left the guild! :sob:');
             embed.setDescription('Left: ' + date.toUTCString());
@@ -126,4 +126,4 @@ bot.on('ready', function () {
     bot.user.setPresence({ status: 'online', game: { name: 'Use ??help' } });
 });
 
-bot.login('<token>');
+bot.login('MzgyMDgzMzU3MjIxMTkxNjgx.DPbs7w.t5lcKV5U6xx22Ul3VGvS2Zz5JBo');

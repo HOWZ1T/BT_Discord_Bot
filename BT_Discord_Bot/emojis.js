@@ -7,5 +7,6 @@
     chewbacca: '<:chewbacca:382751770733969408>',
     credits: '<:credits:382752919101112323>',
     arrowleft: '<:arrowleft:382752919839178752>',
-    arrowright: '<:arrowright:382752920153882634>'
+    arrowright: '<:arrowright:382752920153882634>',
+    empty: '<:empty:382848830607065089>'
 };
