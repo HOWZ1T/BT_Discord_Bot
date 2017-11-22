@@ -126,4 +126,4 @@ bot.on('ready', function () {
     bot.user.setPresence({ status: 'online', game: { name: 'Use ??help' } });
 });
 
-bot.login(process.argv[0]);
+bot.login(process.argv[2]);
