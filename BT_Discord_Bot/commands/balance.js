@@ -8,7 +8,8 @@
         }
 
         let emojis = require('../emojis').emojis;
-        message.channel.send(emojis.credits + ' ' + res[0].credits);
+        let credits = Number(res[0].credits).toLocaleString('en-US');
+        message.channel.send(emojis.credits + ' ' + credits);
     }).catch(err => {
         message.channel.send('ERROR! Could not get your balance as an unforseen error occured... :sob:');
     });

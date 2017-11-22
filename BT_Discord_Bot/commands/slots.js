@@ -44,16 +44,98 @@
             line2 += map[nums[0]] + map[nums[1]] + map[nums[2]] + emojis.arrowright;
             line3 += map[(nums[0] + 4) % 6] + map[(nums[1] + 5) % 6] + map[(nums[2] + 6) % 6] + emojis.empty;
 
+            let multiplier = 1;
+            if (bet >= 10 && bet <= 20)
+            {
+                multiplier = 1.2;
+            }
+            else if (bet >= 50 && bet < 100)
+            {
+                multiplier = 1.5;
+            }
+            else if (bet >= 100)
+            {
+                multiplier = 2;
+            }
+
             let won = 0;
             if (nums[0] === nums[1] && nums[1] === nums[2])
             {
-                won = 1000*bet;
-                newbal += 1000*bet;
+                switch (nums[0])
+                {
+                    case 0:
+                        won = 200 * multiplier;
+                        break;
+                    case 1:
+                        won = 300 * multiplier;
+                        break;
+                    case 2:
+                        won = 400 * multiplier
+                        break;
+                    case 3:
+                        won = 100 * multiplier;
+                        break;
+                    case 4:
+                        won = 2000 * multiplier;
+                        break;
+                    case 5:
+                        won = 500 * multiplier;
+                        break;
+                }
+
+                newbal += won;
             }
-            else if (nums[0] === nums[1] || nums[1] === nums[2])
+            else if (nums[0] === nums[1])
             {
-                won = 500*bet;
-                newbal += 500*bet;
+                switch (nums[0])
+                {
+                    case 0:
+                        won = 100 * multiplier;
+                        break;
+                    case 1:
+                        won = 150 * multiplier;
+                        break;
+                    case 2:
+                        won = 200 * multiplier;
+                        break;
+                    case 3:
+                        won = 50 * multiplier;
+                        break;
+                    case 4:
+                        won = 1000 * multiplier;
+                        break;
+                    case 5:
+                        won = 250 * multiplier;
+                        break;
+                }
+
+                newbal += won;
+            }
+            else if (nums[1] === nums[2])
+            {
+                switch (nums[1])
+                {
+                    case 0:
+                        won = 100 * multiplier;
+                        break;
+                    case 1:
+                        won = 150 * multiplier;
+                        break;
+                    case 2:
+                        won = 200 * multiplier;
+                        break;
+                    case 3:
+                        won = 50 * multiplier;
+                        break;
+                    case 4:
+                        won = 1000 * multiplier;
+                        break;
+                    case 5:
+                        won = 250 * multiplier;
+                        break;
+                }
+
+                newbal += won;
             }
             else
             {
@@ -62,8 +144,8 @@
 
             let Discord = require('discord.js');
             let embed = new Discord.RichEmbed();
-            embed.setAuthor('SLOTS', 'https://lh3.ggpht.com/jk2ny5vblYofegXxfexrJqkxU8Pfayl14thaoLYwY3AXZc63e0wsr1CD-cmZLY8_UQE=w300');
-            embed.setDescription(line1 + '\n' + line2 + '\n' + line3 + '\n' + message.author.username + ' won: ' + emojis.credits + ' ' + won);
+            embed.setAuthor('Galactic Slots', 'https://vignette.wikia.nocookie.net/starwars/images/8/88/GA_Roundel.svg/revision/latest/scale-to-width-down/500?cb=20080228201541');
+            embed.setDescription(line1 + '\n' + line2 + '\n' + line3 + '\n' + message.author.username + ' won: ' + emojis.credits + ' ' + won.toLocaleString('en-US'));
             embed.setColor(0xFFB300);
             message.channel.sendEmbed(embed);
             query('UPDATE citizens SET credits = ' + newbal + ' WHERE citizen_id = ' + message.author.id).then(res => { }).catch(err => { console.log(err) });

@@ -1,3 +1,4 @@
+const fs = require('fs');
 const query = require('./query').query;
 const commandManager = require('./commandManager');
 const Discord = require('discord.js');
@@ -124,6 +125,36 @@ bot.on('message', message => {
 bot.on('ready', function () {
     console.log("BT Online and ready!\nConnected guilds: " + bot.guilds.size);
     bot.user.setPresence({ status: 'online', game: { name: 'Use ??help' } });
+    
+    if (process.argv[7] != undefined)
+    {
+        if (process.argv[7] === 'true')
+        {
+            let pack = fs.readFileSync('package.json');
+            let version = JSON.parse(pack).version;
+
+            bot.guilds.forEach(guild => {
+                query("SELECT announcement_channel FROM guilds WHERE guild_id = " + guild.id).then(res => {
+                    if (res.length == 1)
+                    {
+                        let channel = guild.channels.find("id", res[0].announcement_channel);
+
+                        if (!channel) return;
+
+                        let embed = new Discord.RichEmbed();
+                        embed.setAuthor('BT', bot.user.avatarURL);
+                        embed.setTitle('PATCH: ' + version);
+                        embed.setDescription('The bot has been updated to version: ' + version);
+                        embed.setColor(0x00FF00);
+                        embed.setThumbnail(bot.user.avatarURL);
+                        channel.sendEmbed(embed);
+                    }
+                }).catch(err => { console.log(err) });
+            });
+        }
+    }
 });
 
 bot.login(process.argv[2]);
+
+//TODO add rate limit
