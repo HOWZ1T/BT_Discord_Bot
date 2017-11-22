@@ -3,7 +3,7 @@ const commandManager = require('./commandManager');
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-const commandPrefix = '??';
+const commandPrefix = commandManager.prefix;
 
 bot.on('disconnect', event => {
     console.log("BT disconnected!");
@@ -111,7 +111,7 @@ bot.on('message', message => {
                     }
                 }
 
-                commandManager.on('message', command, params);
+                commandManager.on('message', command, message, params);
             }
         }
     }
