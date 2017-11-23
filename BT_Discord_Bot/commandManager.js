@@ -1,9 +1,18 @@
 ﻿var commands = {
+    'help': require('./commands/help'),
     'setup': require('./commands/setup'),
     'register': require('./commands/register'),
     'slots': require('./commands/slots'),
     'balance': require('./commands/balance')
 };
+
+var commandsArr = [
+    require('./commands/help'),
+    require('./commands/setup'),
+    require('./commands/register'),
+    require('./commands/slots'),
+    require('./commands/balance')
+];
 
 var prefix = '??';
 
@@ -13,7 +22,9 @@ module.exports.on = function (event, command, message, params)
     {
         case 'message':
             if (commands[command] == undefined) return;
-            commands[command].message(message, params, prefix);
+
+            if (command === 'help') commands[command].message(message, params, commandsArr);
+            else commands[command].message(message, params, prefix);
             break;
     }
 }

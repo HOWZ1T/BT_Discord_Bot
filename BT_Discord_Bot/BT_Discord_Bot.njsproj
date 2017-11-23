@@ -36,6 +36,9 @@
     <Compile Include="commands\balance.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="commands\help.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="commands\register.js">
       <SubType>Code</SubType>
     </Compile>

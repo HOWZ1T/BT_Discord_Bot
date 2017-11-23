@@ -111,7 +111,7 @@ bot.on('message', message => {
                         params.push(data[i]);
                     }
                 }
-
+                
                 commandManager.on('message', command, message, params);
             }
         }
