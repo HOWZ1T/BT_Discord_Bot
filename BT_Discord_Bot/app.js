@@ -1,10 +1,12 @@
-const fs = require('fs');
+const fs = require('fs'); //IMPORTS
 const query = require('./query').query;
 const commandManager = require('./commandManager');
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-const commandPrefix = commandManager.prefix;
+const commandPrefix = commandManager.prefix; //VARIABLES
+const cps = [4, 60]; //Commands Per Second (cps). cps[0] = number of commands, cps[1] = seconds
+const activeUsers = []; //Array for rate limiting users. Each element a JSON object: {userid, numCommands (number of commands in last cps[1] seconds), time, warned (boolean)}
 
 bot.on('disconnect', event => {
     console.log("BT disconnected!");
@@ -19,7 +21,7 @@ bot.on('error', error => {
 });
 
 bot.on('reconnecting', replayed => {
-    console.log("BT Reconnected! " + replayed + " Events Replayed!");
+    console.log("BT Reconnected! " + (replayed || 0) + " Events Replayed!");
 });
 
 bot.on('guildCreate', guild => {
@@ -98,21 +100,55 @@ bot.on('message', message => {
         if (message.author.id != bot.user.id) //not looking at messages from itself, avoids bot -> bot loops
         {
             //Check if message is a command
-            if (message.content.substr(0, 2) == commandPrefix)
+            if (message.content.startsWith(commandPrefix))
             {
-                //check for parameters
-                let data = message.content.split(' ');
-                let command = data[0].replace(commandPrefix, '');
-                let params = [];
-                if (data.length > 1)
+                //Check if rate limit has been exceeded
+                let registered = false;
+                let limit = false;
+                for (let j = 0; j < activeUsers.length; j++)
                 {
-                    for (let i = 1; i < data.length; i++)
+                    let user = activeUsers[j];
+                    if (user.userid === message.author.id)
                     {
-                        params.push(data[i]);
+                        registered = true;
+                        if (user.numCommands >= cps[0])
+                        {
+                            if (user.warned === false)
+                            {
+                                user.warned = true;
+                                limit = true;
+                                message.channel.send('<@' + message.author.id + '> you are on cooldown please wait ' + user.time + ' seconds.');
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            user.numCommands++;
+                            //check for parameters
+                            let data = message.content.split(' ');
+                            let command = data[0].replace(commandPrefix, '');
+                            let params = [];
+                            if (data.length > 1) {
+                                for (let i = 1; i < data.length; i++) {
+                                    params.push(data[i]);
+                                }
+                            }
+
+                            commandManager.on('message', command, message, params);
+                            break;
+                        }
                     }
                 }
-                
-                commandManager.on('message', command, message, params);
+
+                if (registered == false)
+                {
+                    activeUsers.push({
+                        userid: message.author.id,
+                        numCommands: 0,
+                        time: cps[1],
+                        warned: false
+                    });
+                }
             }
         }
     }
@@ -124,7 +160,7 @@ bot.on('message', message => {
 
 bot.on('ready', function () {
     console.log("BT Online and ready!\nConnected guilds: " + bot.guilds.size);
-    bot.user.setPresence({ status: 'online', game: { name: 'Use ??help' } });
+    bot.user.setPresence({ status: 'online', game: { name: 'Use ' + commandPrefix + 'help' } });
     
     if (process.argv[7] != undefined)
     {
@@ -157,4 +193,27 @@ bot.on('ready', function () {
 
 bot.login(process.argv[2]);
 
-//TODO add rate limit
+setInterval(function () {
+    for (let i = 0; i < activeUsers.length; i++)
+    {
+        //update data
+        activeUsers[i].time--;
+        if (activeUsers[i].time <= 0)
+        {
+            //check if we can clear this user from memory, i.e: the user is no longer active
+            if (activeUsers[i].numCommands <= 0)
+            {
+                activeUsers.splice(i, 1);
+                continue;
+            }
+            else
+            {
+                //update the active user variables
+                activeUsers[i].time = cps[1];
+                activeUsers[i].numCommands = 0;
+                activeUsers[i].warned = false;
+                continue;
+            }
+        }
+    }
+}, 1000);

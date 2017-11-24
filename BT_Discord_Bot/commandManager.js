@@ -14,7 +14,7 @@ var commandsArr = [
     require('./commands/balance')
 ];
 
-var prefix = '??';
+var prefix = '=';
 
 module.exports.on = function (event, command, message, params)
 {
@@ -23,7 +23,7 @@ module.exports.on = function (event, command, message, params)
         case 'message':
             if (commands[command] == undefined) return;
 
-            if (command === 'help') commands[command].message(message, params, commandsArr);
+            if (command === 'help') commands[command].message(message, params, prefix, commandsArr);
             else commands[command].message(message, params, prefix);
             break;
     }

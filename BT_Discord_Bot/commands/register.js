@@ -23,5 +23,5 @@ module.exports.details = {
     name: 'register',
     description: 'Registers you into the Galactic Database!',
     parameters: 'No parameters.',
-    usage: '??register'
+    usage: 'register'
 };

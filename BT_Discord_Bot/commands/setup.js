@@ -77,6 +77,6 @@ module.exports.details = {
     name: 'setup',
     description: 'Setups your discord server (guild) to fully utilise the features of the BT bot!',
     parameters: '<channel name> | this is the name of the channel you wish to use to log members joining and leaving the guild.' +
-                '\n<announcement channel name> | this is the name of the channel you with to use for bot announcements.',
-    usage: '??setup <channel name> <announcement channel name>'
+                '\n\n<announcement channel name> | this is the name of the channel you with to use for bot announcements.',
+    usage: 'setup <channel name> <announcement channel name>'
 };

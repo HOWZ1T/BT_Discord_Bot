@@ -19,5 +19,5 @@ module.exports.details = {
     name: 'balance',
     description: 'Gets your galactic credits.',
     parameters: 'No parameters.',
-    usage: '??balance'
+    usage: 'balance'
 };

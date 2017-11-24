@@ -51,9 +51,6 @@
     <Compile Include="emojis.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Guild.js">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="query.js">
       <SubType>Code</SubType>
     </Compile>

@@ -164,5 +164,5 @@ module.exports.details = {
     name: 'slots',
     description: 'Test your luck in a round of slots!',
     parameters: '<bet> The amount of galactic credits you are willing to bet.',
-    usage: '??slots <bet>'
+    usage: 'slots <bet>'
 };
