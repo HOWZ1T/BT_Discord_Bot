@@ -148,6 +148,20 @@ bot.on('message', message => {
                         time: cps[1],
                         warned: false
                     });
+
+                    //check for parameters
+                    let data = message.content.split(' ');
+                    let command = data[0].replace(commandPrefix, '');
+                    let params = [];
+                    if (data.length > 1)
+                    {
+                        for (let i = 1; i < data.length; i++)
+                        {
+                            params.push(data[i]);
+                        }
+                    }
+
+                    commandManager.on('message', command, message, params);
                 }
             }
         }
