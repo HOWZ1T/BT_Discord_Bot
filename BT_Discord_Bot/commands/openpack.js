@@ -63,13 +63,13 @@
                 query("SELECT * FROM inventory WHERE citizen_id = " + message.author.id + " AND item_id = " + resB[i].item_id + ";").then(resC => {
                     if (resC.length <= 0)
                     {
-                        query("INSERT INTO inventory VALUES (" + message.author.id + "," + resB[i].item_id + ",1);");
+                        query("INSERT INTO inventory VALUES (" + message.author.id + "," + resB[i].item_id + "," + 1 + ");").catch(console.log);
                     }
                     else
                     {
-                        query("UPDATE inventory SET quantity = " + (resB[i].quantity + 1) + " WHERE citizen_id = " + message.author.id + " AND item_id = " + resB[i].item_id + ";");
+                        query("UPDATE inventory SET quantity = " + (Number(resC[0].quantity) + Number(1)) + " WHERE citizen_id = " + message.author.id + " AND item_id = " + resB[i].item_id + ";").catch(console.log);
                     }
-                });
+                }).catch(console.log);
             }
 
             let embed = new Discord.RichEmbed();
