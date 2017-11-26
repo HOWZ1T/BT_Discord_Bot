@@ -7,7 +7,7 @@
         }
         else
         {
-            query('INSERT INTO citizens VALUES(' + message.author.id + ',1000,\"' + new Date().toString() + '\",0);').then(res => {
+            query('INSERT INTO citizens VALUES(' + message.author.id + ',1000,0,1);').then(res => {
                 message.channel.send('You have successfully been registered into the galactic database! :smiley:');
             }).catch(err => {
                 message.channel.send('ERROR! Could not register you into the galactic database as an unforseen error occured... :sob:');
