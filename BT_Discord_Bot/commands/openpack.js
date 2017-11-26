@@ -2,7 +2,7 @@
     let Discord = require('discord.js');
     let query = require('../query').query;
 
-    query('SELECT packs FROM citizens WHERE citizen_id = ' + message.author.id).then(res => {
+    query('SELECT packs, credits FROM citizens WHERE citizen_id = ' + message.author.id).then(res => {
         if (res.length <= 0)
         {
             message.channel.send('You are not registered in the galactic database, use ***??register*** to become a galactic citizen!');
@@ -55,19 +55,19 @@
             query("UPDATE citizens SET credits = " + (res[0].credits + credits) + " WHERE citizen_id = " + message.author.id + ";");
         }
 
-        query("SELECT * FROM items WHERE rarity = " + rarity + " ORDER BY RAND() LIMIT " + quantity + ";").then(res => {
+        query("SELECT * FROM items WHERE rarity = " + rarity + " ORDER BY RAND() LIMIT " + quantity + ";").then(resB => {
             let emojis = "";
-            for (let i = 0; i < res.length; i++)
+            for (let i = 0; i < resB.length; i++)
             {
-                emojis += res[i].code;
-                query("SELECT * FROM inventory WHERE citizen_id = " + message.author.id + " AND item_id = " + res[i].item_id + ";").then(resB => {
-                    if (resB.length <= 0)
+                emojis += resB[i].code;
+                query("SELECT * FROM inventory WHERE citizen_id = " + message.author.id + " AND item_id = " + res[i].item_id + ";").then(resC => {
+                    if (resC.length <= 0)
                     {
-                        query("INSERT INTO inventory VALUES (" + message.author.id + "," + res[i].item_id + ",1);");
+                        query("INSERT INTO inventory VALUES (" + message.author.id + "," + resB[i].item_id + ",1);");
                     }
                     else
                     {
-                        query("UPDATE inventory SET quantity = " + (resB[0].quantity + 1) + " WHERE citizen_id = " + message.author.id + " AND item_id = " + res[i].item_id + ";");
+                        query("UPDATE inventory SET quantity = " + (resC[0].quantity + 1) + " WHERE citizen_id = " + message.author.id + " AND item_id = " + resB[i].item_id + ";");
                     }
                 });
             }
@@ -81,6 +81,7 @@
             if (credits > 0)
             {
                 embed.addField("Bonus: ", creditsEmoji + credits, false);
+                query("UPDATE citizens SET credits = " + (res[0].credits + credits) + " WHERE citizen_id = " + message.author.id + ";");
             }
             embed.setColor(0xFFB300);
             embed.setThumbnail(thumbs[rarity - 1]);
