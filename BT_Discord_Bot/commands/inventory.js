@@ -15,6 +15,13 @@
 
         for (let i = 0; i < res.length; i++)
         {
+            if (i % 20 === 0 && i != 0) {
+                message.author.sendEmbed(embed);
+                embed = new Discord.RichEmbed();
+                embed.setAuthor('Inventory', 'https://i.ebayimg.com/images/g/nsQAAOSwQ59ZYEGY/s-l225.jpg');
+                embed.setColor(0xFFB300);
+            }
+
             let rarity = '';
             switch (res[i].rarity)
             {
@@ -35,11 +42,6 @@
                     break;
             }
             embed.addField(res[i].code + ' x ' + res[i].quantity, res[i].name + '\n' + rarity, true);
-            if (i < 20)
-            {
-                message.author.sendEmbed(embed);
-                embed.fields = [];
-            }
         }
 
         if (message.author.dmChannel === null)
