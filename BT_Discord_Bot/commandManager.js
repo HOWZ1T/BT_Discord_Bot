@@ -3,7 +3,9 @@
     'setup': require('./commands/setup'),
     'register': require('./commands/register'),
     'slots': require('./commands/slots'),
-    'balance': require('./commands/balance')
+    'balance': require('./commands/balance'),
+    'daily': require('./commands/daily'),
+    'inventory': require('./commands/inventory')
 };
 
 var commandsArr = [
@@ -11,10 +13,12 @@ var commandsArr = [
     require('./commands/setup'),
     require('./commands/register'),
     require('./commands/slots'),
-    require('./commands/balance')
+    require('./commands/balance'),
+    require('./commands/daily'),
+    require('./commands/inventory')
 ];
 
-var prefix = '=';
+var prefix = '??';
 
 module.exports.on = function (event, command, message, params)
 {

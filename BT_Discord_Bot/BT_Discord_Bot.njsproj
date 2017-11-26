@@ -36,7 +36,13 @@
     <Compile Include="commands\balance.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="commands\daily.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="commands\help.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="commands\inventory.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="commands\register.js">
@@ -49,6 +55,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="emojis.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="lootThumbs.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="query.js">
