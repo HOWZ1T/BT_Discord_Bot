@@ -11,7 +11,7 @@
 
         if ((res[0].packs - 1) >= 0)
         {
-            query("UPDATE citizens SET packs = " + (res[0].packs - 1) + " WHERE citizen_id = " + message.author.id);
+            query("UPDATE citizens SET packs = " + (res[0].packs - 1) + " WHERE citizen_id = " + message.author.id).catch(console.log);
         }
         else
         {
@@ -52,7 +52,7 @@
 
         if (credits > 0)
         {
-            query("UPDATE citizens SET credits = " + (res[0].credits + credits) + " WHERE citizen_id = " + message.author.id + ";");
+            query("UPDATE citizens SET credits = " + (res[0].credits + credits) + " WHERE citizen_id = " + message.author.id + ";").catch(console.log);
         }
 
         query("SELECT * FROM items WHERE rarity = " + rarity + " ORDER BY RAND() LIMIT " + quantity + ";").then(resB => {
@@ -60,7 +60,7 @@
             for (let i = 0; i < resB.length; i++)
             {
                 emojis += resB[i].code;
-                query("SELECT * FROM inventory WHERE citizen_id = " + message.author.id + " AND item_id = " + res[i].item_id + ";").then(resC => {
+                query("SELECT * FROM inventory WHERE citizen_id = " + message.author.id + " AND item_id = " + resB[i].item_id + ";").then(resC => {
                     if (resC.length <= 0)
                     {
                         query("INSERT INTO inventory VALUES (" + message.author.id + "," + resB[i].item_id + ",1);");
@@ -86,8 +86,8 @@
             embed.setThumbnail(thumbs[rarity - 1]);
             embed.setFooter('You have ' + numPacks + ' packs left');
             message.channel.sendEmbed(embed);
-        });
-    });
+        }).catch(console.log);
+    }).catch(console.log);
 }
 
 module.exports.details = {
