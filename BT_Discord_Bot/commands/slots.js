@@ -10,6 +10,11 @@
         message.channel.send('Your bet needs to be a number!');
         return;
     }
+    else if ((params[0] % 1) != 0)
+    {
+        message.channel.send('Your bet needs to be a whole number, NO decimals!');
+        return;
+    }
     else if (Number(params[0]) <= 4)
     {
         message.channel.send('There is a minimum bet of 5 credits!');

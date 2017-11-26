@@ -36,6 +36,9 @@
     <Compile Include="commands\balance.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="commands\buypacks.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="commands\daily.js">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +46,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="commands\inventory.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="commands\openpack.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="commands\packs.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="commands\register.js">

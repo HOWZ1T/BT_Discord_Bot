@@ -5,7 +5,10 @@
     'slots': require('./commands/slots'),
     'balance': require('./commands/balance'),
     'daily': require('./commands/daily'),
-    'inventory': require('./commands/inventory')
+    'inventory': require('./commands/inventory'),
+    'buypacks': require('./commands/buypacks'),
+    'openpack': require('./commands/openpack'),
+    'packs': require('./commands/packs')
 };
 
 var commandsArr = [
@@ -15,7 +18,10 @@ var commandsArr = [
     require('./commands/slots'),
     require('./commands/balance'),
     require('./commands/daily'),
-    require('./commands/inventory')
+    require('./commands/inventory'),
+    require('./commands/buypacks'),
+    require('./commands/openpack'),
+    require('./commands/packs')
 ];
 
 var prefix = '??';
