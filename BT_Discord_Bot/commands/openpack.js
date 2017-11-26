@@ -67,7 +67,7 @@
                     }
                     else
                     {
-                        query("UPDATE inventory SET quantity = " + (resC[0].quantity + 1) + " WHERE citizen_id = " + message.author.id + " AND item_id = " + resB[i].item_id + ";");
+                        query("UPDATE inventory SET quantity = " + (resB[0].quantity + 1) + " WHERE citizen_id = " + message.author.id + " AND item_id = " + resB[i].item_id + ";");
                     }
                 });
             }
@@ -81,7 +81,6 @@
             if (credits > 0)
             {
                 embed.addField("Bonus: ", creditsEmoji + credits, false);
-                query("UPDATE citizens SET credits = " + (res[0].credits + credits) + " WHERE citizen_id = " + message.author.id + ";");
             }
             embed.setColor(0xFFB300);
             embed.setThumbnail(thumbs[rarity - 1]);
