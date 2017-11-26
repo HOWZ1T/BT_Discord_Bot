@@ -67,7 +67,7 @@
                     }
                     else
                     {
-                        query("UPDATE inventory SET quantity = " + (resB[0].quantity + 1) + " WHERE citizen_id = " + message.author.id + " AND item_id = " + resB[i].item_id + ";");
+                        query("UPDATE inventory SET quantity = " + (resB[i].quantity + 1) + " WHERE citizen_id = " + message.author.id + " AND item_id = " + resB[i].item_id + ";");
                     }
                 });
             }
