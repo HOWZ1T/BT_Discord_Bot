@@ -4,7 +4,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>BT_Discord_Bot</Name>
     <RootNamespace>BT_Discord_Bot</RootNamespace>
-    <ScriptArguments>MzgyMDgzMzU3MjIxMTkxNjgx.DPcCHA.GFhtdKx68BuqAa3NZcoQGS28J3A bt-db.crct0tfc5f4g.ap-southeast-2.rds.amazonaws.com bt Sysadm1n galactic false</ScriptArguments>
+    <ScriptArguments></ScriptArguments>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
