@@ -34,7 +34,12 @@
                     rarity = 'Legendary';
                     break;
             }
-            embed.addField(res[i].code + ' x ' + res[i].quantity, res[i].name + '\n' + rarity, true);  
+            embed.addField(res[i].code + ' x ' + res[i].quantity, res[i].name + '\n' + rarity, true);
+            if (i < 20)
+            {
+                message.author.sendEmbed(embed);
+                embed.fields = [];
+            }
         }
 
         if (message.author.dmChannel === null)
